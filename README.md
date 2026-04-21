@@ -26,13 +26,13 @@ graph LR
     subgraph MappingFlow [Mapping & Translation Phase]
         direction TB
         MappingAgent[Mapping Agent]:::agent
-        GoogleSearch[("Google Search API")]:::tool
+        GoogleSearch[["Google Search API"]]:::tool
     end
 
     subgraph BillingFlow [Cost Calculation Phase]
         direction TB
         BillingAgent[Billing Agent]:::agent
-        BillingAPI[("Cloud Billing API v2beta2")]:::tool
+        BillingAPI[["Cloud Billing API v2beta2"]]:::tool
     end
 
     Final([Final BOM / Answer]):::user
