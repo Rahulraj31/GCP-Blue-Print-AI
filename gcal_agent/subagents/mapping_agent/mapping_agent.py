@@ -18,5 +18,5 @@ mapping_agent = Agent(
         "non-GCP cloud resources to GCP equivalents."
     ),
     instruction=MAPPING_INSTRUCTION,
-    tools=[google_search],
+    #tools=[google_search],
 )

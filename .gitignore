@@ -9,7 +9,7 @@ wheels/
 # Environment and version files
 .env
 .python-version
-
+*.json
 # Virtual environments
 .venv
 .adk

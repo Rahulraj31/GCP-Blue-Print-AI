@@ -1,3 +1,0 @@
-google-adk
-google-cloud-billing
-python-dotenv

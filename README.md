@@ -1,6 +1,7 @@
 # 🛠️ GCP Blueprint AI
 
 **GCP Blueprint AI** is a conversational analysis and cost estimation tool designed to simplify cloud architectural planning. Whether you are starting a new project natively on Google Cloud or translating an existing infrastructure from AWS or Azure, it acts as a specialized assistant—instantly mapping components and generating real-time, precision-grade Bill of Materials (BOM) using live pricing data.
+u
 
 ## ✨ Key Capabilities
 
@@ -22,7 +23,7 @@ graph LR
     %% Node Definitions
     User([User Query]):::user
     Orchestrator{"cloud_root<br/>Orchestrator"}:::router
-    
+
     subgraph MappingFlow [Mapping & Translation Phase]
         direction TB
         MappingAgent[Mapping Agent]:::agent
@@ -45,15 +46,15 @@ graph LR
 
     %% Connections
     User --> Orchestrator
-    
+
     Orchestrator ==>|1. Identify non-GCP Services| MappingAgent
     MappingAgent -.->|Fallback Search| GoogleSearch
     MappingAgent -.->|Translated Services| Orchestrator
-    
+
     Orchestrator ==>|2. Calculate GCP Costs| BillingAgent
     BillingAgent -.->|Fetch SKUs & Tiers| BillingAPI
     BillingAgent -.->|Cost Estimates| Orchestrator
-    
+
     Orchestrator --> Final
 ```
 
@@ -64,6 +65,7 @@ graph LR
 ---
 
 ## Technical Prerequisites
+
 - A Google Cloud Project
 - Python 3.10+
 - Service Account Credentials JSON having `Vertex AI Admin` and `Cloud Billing API` read access.
@@ -74,39 +76,43 @@ graph LR
 Development is built around `uv` for ultra-fast, reproducible python environments.
 
 1. **Clone the repository and enter directory**:
-    ```bash
-    git clone https://github.com/RahulRaj/newGcal.git
-    cd newGcal
-    ```
+
+   ```bash
+   git clone https://github.com/RahulRaj/newGcal.git
+   cd newGcal
+   ```
 
 2. **Sync the Environment**:
-    Use `uv` to parse `pyproject.toml` and `uv.lock` to set up your `.venv`.
-    ```bash
-    uv sync
-    ```
+   Use `uv` to parse `pyproject.toml` and `uv.lock` to set up your `.venv`.
+
+   ```bash
+   uv sync
+   ```
 
 3. **Configure Environment Variables**:
-    Create `.env` at the project root and add your details:
-    ```ini
-    PROJECT_ID=your-google-cloud-project-id
-    LOCATION=us-central1
-    GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/service-account.json
-    ```
+   Create `.env` at the project root and add your details:
+
+   ```ini
+   PROJECT_ID=your-google-cloud-project-id
+   LOCATION=us-central1
+   GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/service-account.json
+   ```
 
 4. **Launch the ADK Server via `uv`**:
-    Start the development Web UI to interact with your agents.
-    ```bash
-    uv run google-adk dev
-    ```
+   Start the development Web UI to interact with your agents. Run this from the project root.
+
+   ```bash
+    uv run adk web .
+   ```
 
 ## Usage
 
 1. Open the UI at `http://localhost:8080`
 2. Create a new session.
 3. Chat with the root orchestrator:
-   - *"Show me the monthly cost of 3 Compute Engine N2-standard-4 instances in us-central1."*
-   - *"I want to move an Azure Function and Azure SQL DB to GCP, what are the costs?"*
-   - *"Provide a BOM for 3 instances of a standard GKE node pool in europe-west1."*
+   - _"Show me the monthly cost of 3 Compute Engine N2-standard-4 instances in us-central1."_
+   - _"I want to move an Azure Function and Azure SQL DB to GCP, what are the costs?"_
+   - _"Provide a BOM for 3 instances of a standard GKE node pool in europe-west1."_
    - Or upload an image of a cloud architecture to translate.
 
 ---
@@ -114,6 +120,7 @@ Development is built around `uv` for ultra-fast, reproducible python environment
 ## 🚀 Future Roadmap
 
 I am actively working on expanding **GCP Blueprint AI** with powerful new capabilities:
+
 - **🎨 Architecture Generation Agent**: A new specialized agent that can generate complete GCP architecture diagrams from scratch based on a text description.
 - **🔄 Visual Translation**: An automated pipeline to translate existing AWS/Azure architecture diagrams directly into visual GCP blueprints.
 - **📊 Extended Analytics**: Support for more complex usage patterns and multi-cloud optimization strategies.
