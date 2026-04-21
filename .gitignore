@@ -6,6 +6,10 @@ dist/
 wheels/
 *.egg-info
 
+# Environment and version files
+.env
+.python-version
+
 # Virtual environments
 .venv
 .adk
